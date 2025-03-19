@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shree Love</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .heart-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20rem;
+            color: rgba(255, 107, 107, 0.2);
+            z-index: 0;
+            visibility: hidden;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            position: relative;
+        }
+        h1 {
+            color: #ff6b6b;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.4rem;
+            color: #555;
+        }
+        .message {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            visibility: hidden;
+        }
+        .heart-container {
+            font-size: 4rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        .heart-container p {
+            margin-top: 20px;
+            font-size: 1.4rem;
+            color: #555;
+        }
+        .big-heart-message {
+            font-size: 3rem;
+            color: #ff6b6b;
+            visibility: hidden;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .button-yes {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        .button-no {
+            background-color: #aaa;
+            color: white;
+        }
+        .button-no:hover {
+            background-color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-bg" id="heartBg">❤️</div>
+    <div class="container">
+        <h1>Is Nasif a good bestie?</h1>
+        <p class="message" id="message"></p>
+        <div class="button-container">
+            <button class="button button-yes" id="yesButton">Yes</button>
+            <button class="button button-no" id="noButton">No</button>
+        </div>
+        <div class="big-heart-message" id="bigHeartMessage">❤️❤️❤️ I’m grateful to have you, friend... or maybe... ahem 😉❤️❤️❤️</div>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const message = document.getElementById('message');
+        const bigHeartMessage = document.getElementById('bigHeartMessage');
+        const heartBg = document.getElementById('heartBg');
+        let noClickCount = 0;
+
+        yesButton.addEventListener('click', function() {
+            message.style.visibility = 'visible';
+            message.innerText = 'You made the right choice! Nasif is a very good boy!';
+            setTimeout(() => {
+                heartBg.style.visibility = 'visible';
+                bigHeartMessage.style.visibility = 'visible';
+            }, 1000);
+        });
+
+        noButton.addEventListener('click', function() {
+            noClickCount++;
+            // Shrink no button gradually and move it randomly
+            noButton.style.transform = `scale(${1 - noClickCount * 0.1})`;
+            noButton.style.position = 'absolute';
+            noButton.style.top = `${Math.random() * 80}%`;
+            noButton.style.left = `${Math.random() * 80}%`;
+            
+            // Enlarge the yes button gradually
+            yesButton.style.transform = `scale(${1 + noClickCount * 0.1})`;
+
+            if (noClickCount === 1) {
+                message.style.visibility = 'visible';
+                message.innerText = 'Please reconsider!';
+            } else if (noClickCount === 2) {
+                message.innerText = 'He is a very good boy!';
+            } else if (noClickCount === 3) {
+                message.innerText = 'Think again!';
+            } else if (noClickCount === 4) {
+                message.innerText = 'This is your last chance!';
+            } else if (noClickCount === 5) {
+                message.innerText = 'Pleaaaaase!';
+                noButton.style.visibility = 'hidden';
+            }
+        });
+    </script>
+</body>
+</html>
