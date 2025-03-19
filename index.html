@@ -51,16 +51,6 @@
             color: #ff6b6b;
             visibility: hidden;
         }
-        .heart-container {
-            font-size: 4rem;
-            color: #ff6b6b;
-            margin-bottom: 20px;
-        }
-        .heart-container p {
-            margin-top: 20px;
-            font-size: 1.4rem;
-            color: #555;
-        }
         .big-heart-message {
             font-size: 3rem;
             color: #ff6b6b;
@@ -112,8 +102,11 @@
         let noClickCount = 0;
 
         yesButton.addEventListener('click', function() {
+            // Show final message and heart background
             message.style.visibility = 'visible';
             message.innerText = 'You made the right choice! Nasif is a very good boy!';
+            yesButton.style.visibility = 'hidden';
+            noButton.style.visibility = 'hidden';
             setTimeout(() => {
                 heartBg.style.visibility = 'visible';
                 bigHeartMessage.style.visibility = 'visible';
